@@ -2,7 +2,7 @@
     {
         "firstname": "Leila",
         "lastname": "Hökkanen",
-        "phone": [
+        "phones": [
             {
                 "type": "home",
                 "number": "12345678"
@@ -20,7 +20,7 @@
     {
         "firstname": "Matti",
         "lastname": "Riverlainen",
-        "phone": [
+        "phones": [
             {
                 "type": "home",
                 "number": "22785678"
