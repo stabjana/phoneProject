@@ -111,4 +111,33 @@ describe('Testing getTypes', () => {
         expect(register.getTypes()).toEqual([""]);
     });
 
+});
+
+describe('Testing getPersonsNumbersByType', () => {
+    test('Test 1: Leila Hökkanen and work', () => {
+        const register = new PhoneRegister(defaultData);
+        const expectedResult = [987654321, 12312312];
+        expect(register.getPersonsNumbersByType('Leila', 'Hökkanen', 'work')).toEqual(expectedResult);
+    });
+
+    test('Test 2: Matti River and mobile', () => {
+        const register = new PhoneRegister(defaultData);
+        const expectedResult = [24681591];
+        expect(register.getPersonsNumbersByType('Matti', 'Riverlainen', 'mobile')).toEqual(expectedResult);
+    });
+}); // ein ende zu viel hier?
+
+describe('Test 1-3', () => {
+    const testValues = [
+        ['Leila', 'Hökkanen', 'Worker', [987654321, 12312312]],
+        ['Matti', 'Riverlainen', 'mobile', [24681591]],
+        ['Matti', 'x', 'mobile', []],
+        ['x', 'Riverlainen', 'mobile', []],
+        ['Matti', 'Riverlainen', 'x', []]
+    ];
+    const register = new PhoneRegister(defaultData);
+
+    test.each(testValues)('%s, %s, %s returns %s', (fn, ln, type, result) => {
+        expect(register.getPersonsNumbersByType(fn, ln, type)).toEqual(result);
+    });
 })
