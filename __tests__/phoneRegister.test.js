@@ -116,13 +116,13 @@ describe('Testing getTypes', () => {
 describe('Testing getPersonsNumbersByType', () => {
     test('Test 1: Leila Hökkanen and work', () => {
         const register = new PhoneRegister(defaultData);
-        const expectedResult = [987654321, 12312312];
+        const expectedResult = ["987654321", "12312312"];
         expect(register.getPersonsNumbersByType('Leila', 'Hökkanen', 'work')).toEqual(expectedResult);
     });
 
     test('Test 2: Matti River and mobile', () => {
         const register = new PhoneRegister(defaultData);
-        const expectedResult = [24681591];
+        const expectedResult = ["24681591"];
         expect(register.getPersonsNumbersByType('Matti', 'Riverlainen', 'mobile')).toEqual(expectedResult);
     });
 
@@ -130,8 +130,8 @@ describe('Testing getPersonsNumbersByType', () => {
     describe('Test 1-3', () => {
         const testValues = [
             // fn       ln      type        result
-            ['Leila', 'Hökkanen', 'work', [987654321, 12312312]],
-            ['Matti', 'Riverlainen', 'mobile', [24681591]],
+            ['Leila', 'Hökkanen', 'work', ["987654321", "12312312"]],
+            ['Matti', 'Riverlainen', 'mobile', ["24681591"]],
             ['Matti', 'x', 'mobile', []],
             ['x', 'Riverlainen', 'mobile', []],
             ['Matti', 'Riverlainen', 'x', []]
@@ -141,7 +141,7 @@ describe('Testing getPersonsNumbersByType', () => {
         test.each(testValues)('%s, %s, %s returns %s', (fn, ln, type, result) => {
             expect(register.getPersonsNumbersByType(fn, ln, type)).toEqual(result);
         });
-    })// end of test 1-3
+    })// end of describe of test 1-3
 
     describe('Test 4: params are missing', () => {
         const register = new PhoneRegister(defaultData);
@@ -161,25 +161,25 @@ describe('Testing getPersonsNumbersByType', () => {
         const testData = [
             {
                 "firstname": "Leila",
-                "lastname": "Hökki",
+                "lastname": "Hökkanen",
                 "phones": [
                     { "type": "work", "number": "987654321" },
-                    { "type": "", "number": "05040302" },
+                    { "type": "", "number": "12312312" },
                     { "type": "home", "number": "12345678" }
                 ]
             },
             {
-                "firstname": "Matt",
-                "lastname": "River",
+                "firstname": "Matti",
+                "lastname": "Riverlainen",
                 "phones": [
-                    { "type": "work", "number": "2468159" }
+                    { "type": "work", "number": "56789102" }
                 ]
             }
         ];
 
         const register = new PhoneRegister(testData);
-        expect(register.getPersonsNumbersByType('Leila', 'Hökki', ''))
-            .toEqual(["05040302"])
+        expect(register.getPersonsNumbersByType('Leila', 'Hökkanen', ''))
+            .toEqual(["12312312"])
 
     })// end of test 5
 
@@ -192,9 +192,9 @@ describe('Testing getAllNumbersByType', () => {
 
         const expectedResult = [
             {
-                "firstname": "Matt",
-                "lastname": "River",
-                "number": { "type": "mobile", "tel": "0409812345" }
+                "firstname": "Matti",
+                "lastname": "Riverlainen",
+                "number": { "type": "mobile", "tel": "24681591" }
             }
         ];
 
@@ -207,16 +207,16 @@ describe('Testing getAllNumbersByType', () => {
 
         const expectedResult = [
             {
-                "firstname": "Leila", "lastname": "Hökki",
+                "firstname": "Leila", "lastname": "Hökkanen",
                 "number": { "type": "work", "tel": "987654321" }
             },
             {
-                "firstname": "Leila", "lastname": "Hökki",
-                "number": { "type": "work", "tel": "05040302" }
+                "firstname": "Leila", "lastname": "Hökkanen",
+                "number": { "type": "work", "tel": "12312312" }
             },
             {
-                "firstname": "Matt", "lastname": "River",
-                "number": { "type": "work", "tel": "2468159" }
+                "firstname": "Matti", "lastname": "Riverlainen",
+                "number": { "type": "work", "tel": "56789102" }
             }
         ];
 
@@ -239,8 +239,8 @@ describe('Testing getName', () => {
 
     const testValues = [
         //number       result
-        ["12345678", { "firstname": "Leila", "lastname": "Hökki" }],
-        ["0409812345", { "firstname": "Matt", "lastname": "River" }]
+        ["12345678", { "firstname": "Leila", "lastname": "Hökkanen" }],
+        ["24681591", { "firstname": "Matti", "lastname": "Riverlainen" }]
     ];
 
     test.each(testValues)('number %s returns %p', (number, result) => {
