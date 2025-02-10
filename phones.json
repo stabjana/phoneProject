@@ -1,0 +1,38 @@
+[
+    {
+        "firstname": "Leila",
+        "lastname": "Hökkanen",
+        "phone": [
+            {
+                "type": "home",
+                "number": "12345678"
+            },
+            {
+                "type": "work",
+                "number": "987654321"
+            },
+            {
+                "type": "work",
+                "number": "12312312"
+            }
+        ]
+    },
+    {
+        "firstname": "Matti",
+        "lastname": "Riverlainen",
+        "phone": [
+            {
+                "type": "home",
+                "number": "22785678"
+            },
+            {
+                "type": "mobile",
+                "number": "24681591"
+            }, 
+            {
+                "type": "work",
+                "number": "56789102"
+            }
+        ]
+    }
+]
