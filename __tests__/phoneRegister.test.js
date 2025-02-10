@@ -125,19 +125,39 @@ describe('Testing getPersonsNumbersByType', () => {
         const expectedResult = [24681591];
         expect(register.getPersonsNumbersByType('Matti', 'Riverlainen', 'mobile')).toEqual(expectedResult);
     });
-}); // ein ende zu viel hier?
 
-describe('Test 1-3', () => {
-    const testValues = [
-        ['Leila', 'Hökkanen', 'Worker', [987654321, 12312312]],
-        ['Matti', 'Riverlainen', 'mobile', [24681591]],
-        ['Matti', 'x', 'mobile', []],
-        ['x', 'Riverlainen', 'mobile', []],
-        ['Matti', 'Riverlainen', 'x', []]
-    ];
-    const register = new PhoneRegister(defaultData);
 
-    test.each(testValues)('%s, %s, %s returns %s', (fn, ln, type, result) => {
-        expect(register.getPersonsNumbersByType(fn, ln, type)).toEqual(result);
-    });
-})
+    describe('Test 1-3', () => {
+        const testValues = [
+            ['Leila', 'Hökkanen', 'Worker', [987654321, 12312312]],
+            ['Matti', 'Riverlainen', 'mobile', [24681591]],
+            ['Matti', 'x', 'mobile', []],
+            ['x', 'Riverlainen', 'mobile', []],
+            ['Matti', 'Riverlainen', 'x', []]
+        ];
+        const register = new PhoneRegister(defaultData);
+
+        test.each(testValues)('%s, %s, %s returns %s', (fn, ln, type, result) => {
+            expect(register.getPersonsNumbersByType(fn, ln, type)).toEqual(result);
+        });
+    })// end of test 1-3
+
+    describe('Test 4: params are missing', () => {
+        const register = new PhoneRegister(defaultData);
+
+        test('4.1: one param missing (type)', () => {
+            expect(() => register.getPersonsNumbersByType('Matti', 'Riverlainen')).toThrow('missing parameter');
+        });
+        test('4.2: two param missing (type)', () => {
+            expect(() => register.getPersonsNumbersByType('Matti')).toThrow('missing parameter');
+        });
+        test('4.3: three param missing (type)', () => {
+            expect(() => register.getPersonsNumbersByType()).toThrow('missing parameter');
+        });
+    }) // end of desc. test4
+
+
+
+
+
+}); // ein ende zu viel hier? --- end of testing getPersonsNumbersByType
