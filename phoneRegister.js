@@ -68,7 +68,30 @@ module.exports = class PhoneRegister {
     } //end of getAllNumbersByType
 
     getName(number) {
+        if (arguments.length < 1) {
+            return null;
+        }
+        for (const person of this.#register) { // search all persons and all phones
+            for (const phone of person.phones) {
+                if (phone.number === number) {
+                    return {
+                        firstname: person.firstname,
+                        lastname: person.lastname
+                    }
+                }
+            }
+        }
+        return null;
+    } // end of get name
 
-    }
+    getAllNumbers() {
+        const foundPersons = []; // persons with phones
+        for (const person of this.#register) {
+            if (person.phones.length > 0) {
+                foundPersons.push(person);
+            }
+        }
+        return foundPersons;
+    }// end of get all numbers
 
 }//end of class
